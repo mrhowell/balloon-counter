@@ -20,7 +20,8 @@ struct Balloon {
 func createBalloons (numberOfBalloons: Int) {
     
     var myBalloons = Balloon()
-    var myBallonArray = []
+    var balloonImageArray:[String] = []
+    var balloonCountArray:[Int] = []
     
     for var balloonCount = 0; balloonCount < numberOfBalloons; balloonCount++ {
         
@@ -39,9 +40,46 @@ func createBalloons (numberOfBalloons: Int) {
         default:
             myBalloons.selectedImage = UIImage(named: "RedBalloon4.jpg")
        
+       
+       balloonImageArray.append("\(myBalloons.selectedImage)")
+       balloonCountArray.append(balloonCount)
             
             
-        }
 }
 
 }
+
+    var thisBalloon:String = balloonImageArray[0]
+    println("\(thisBalloon)!")
+    
+}
+
+/func createBalloons () {
+//
+//    var myRandomBallons = [Balloon]()
+//    var ballonImage = ""
+//
+//    for var i = 0; i < 100; {
+//
+//        let randomImageNumber = Int(arc4random_uniform(UInt32(4)))
+//
+//
+//        var x = randomImageNumber
+//
+//        switch x {
+//        case 1:
+//            ballonImage = "RedBallon1.jpg"
+//        case 2:
+//            ballonImage = "RedBalloon2.jpg"
+//        case 3:
+//            ballonImage = "RedBalloon3.jpg"
+//        case 4:
+//            ballonImage = "RedBalloon4.jpg"
+//
+//            myRandomBallons.append(number: i, image: ballonImage)
+//
+//            i++
+//
+//        }
+//
+//}

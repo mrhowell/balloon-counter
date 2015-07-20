@@ -13,18 +13,50 @@ class ViewController: UIViewController {
     @IBOutlet weak var balloonImage: UIImageView!
     @IBOutlet weak var balloonCount: UILabel!
     
+    var myBalloons:[Balloon] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        var myBalloons = Balloon()
-        myBalloons.balloonNumber = 0
-        myBalloons.selectedImage = UIImage(named: "BerlinTVTower.jpg")
+        var zeroBalloons = Balloon()
+        zeroBalloons.balloonNumber = 0
+        zeroBalloons.selectedImage = UIImage(named: "BerlinTVTower.jpg")
         
         
-        balloonCount.text = "\(myBalloons.balloonNumber) Balloons"
-        balloonImage.image = myBalloons.selectedImage
+        balloonCount.text = "\(zeroBalloons.balloonNumber) Balloons"
+        balloonImage.image = zeroBalloons.selectedImage
+        
+        
+        for x in 0...99 {
+            
+//            for var balloonCount = 0; balloonCount < numberOfBalloons; balloonCount++ {
+            
+                let randomInteger = Int(arc4random_uniform(UInt32(4)))
+                
+//                myBalloons.balloonNumber = myBalloons.balloonNumber + 1
+            
+                var x = randomInteger
+            
+                switch x {
+                case 0:
+                    myBalloons.selectedImage = UIImage(named: "RedBalloon1.jpg")
+                case 1:
+                    myBalloons.selectedImage = UIImage(named: "RedBalloon2.jpg")
+                case 2:
+                    myBalloons.selectedImage = UIImage(named: "RedBalloon3.jpg")
+                default:
+                    myBalloons.selectedImage = UIImage(named: "RedBalloon4.jpg")
+                    
+                    
+                    balloonImageArray.append("\(myBalloons.selectedImage)")
+                    balloonCountArray.append(balloonCount)
+            }
+            
+        }
+        
+
         
         
         
@@ -39,53 +71,20 @@ class ViewController: UIViewController {
     }
 
     @IBAction func barNextButtonPressed(sender: UIBarButtonItem) {
-    
+//        println(myBalloons)
         
+        UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            
+            self.balloonImage.image = balloon.selectedImage
+            self.balloonCount.text = ("\(balloon.balloonNumber)")
+            
+            
+            }, completion: {
+                (finished: Bool) -> () in
+        })
     
     }
-    
-
-//    UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-//    
-//    self.balloonImage = myRandomBalloons.image
-//    self.balloonCount.text = myRandomBalloons.number
-//    
-//    }, completion: {
-//    (finished: Bool) -> () in
-//    })
-    
     
 }
 
 
-
-
-//func createBalloons () {
-//
-//    var myRandomBallons = [Balloon]()
-//    var ballonImage = ""
-//    
-//    for var i = 0; i < 100; {
-//        
-//        let randomImageNumber = Int(arc4random_uniform(UInt32(4)))
-//        
-//        
-//        var x = randomImageNumber
-//        
-//        switch x {
-//        case 1:
-//            ballonImage = "RedBallon1.jpg"
-//        case 2:
-//            ballonImage = "RedBalloon2.jpg"
-//        case 3:
-//            ballonImage = "RedBalloon3.jpg"
-//        case 4:
-//            ballonImage = "RedBalloon4.jpg"
-//            
-//            myRandomBallons.append(number: i, image: ballonImage)
-//            
-//            i++
-//            
-//        }
-//        
-//}
