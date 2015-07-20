@@ -11,36 +11,37 @@ import UIKit
 
 struct Balloon {
     
-    var number: Int = 0
-    var image = UIImage(named: <#String#>)
+    var balloonNumber = 0
+    var selectedImage = UIImage (named:"")
     
 }
 
-func createBalloons () {
 
-    var myBalloon = Balloon()
-    var balloonCollection = [0...99]
-
+func createBalloons (numberOfBalloons: Int) {
     
-    let randomImageNumber = Int(arc4random_uniform(UInt32(4)))
-
+    var myBalloons = Balloon()
+    var myBallonArray = []
     
-    var x = randomImageNumber
+    for var balloonCount = 0; balloonCount < numberOfBalloons; balloonCount++ {
         
+        let randomInteger = Int(arc4random_uniform(UInt32(4)))
+        
+        myBalloons.balloonNumber = myBalloons.balloonNumber + 1
+        
+        var x = randomInteger
         switch x {
+        case 0:
+            myBalloons.selectedImage = UIImage(named: "RedBalloon1.jpg")
         case 1:
-            myBalloon.image = "RedBalloon1.jpg"
+            myBalloons.selectedImage = UIImage(named: "RedBalloon2.jpg")
         case 2:
-            myBalloons.image = "RedBalloon2.jpg"
-        case 3:
-            myBalloons.image = "RedBalloon3.jpg"
-        case 4:
-            myBalloons.image = "RedBalloon4.jpg"
-        
-        
-        i++
+            myBalloons.selectedImage = UIImage(named: "RedBalloon3.jpg")
+        default:
+            myBalloons.selectedImage = UIImage(named: "RedBalloon4.jpg")
+       
             
-    }
-    
-    
+            
+        }
+}
+
 }
