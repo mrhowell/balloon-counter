@@ -9,52 +9,49 @@
 import Foundation
 import UIKit
 
+//Define Balloon as struct
+
 struct Balloon {
     
-    var balloonNumber = 0
-    var selectedImage = UIImage (named:"")
+    var balloonNumber: Int = 0
+    var selectedImage: String = ""
     
 }
 
+// Initialize Balloon struct in array
+var myBalloons:[Balloon] = []
 
-func createBalloons (numberOfBalloons: Int) {
+// Create 99 balloons with number and assigned random image
+
+func createBalloons () {
     
-    var myBalloons = Balloon()
-    var balloonImageArray:[String] = []
-    var balloonCountArray:[Int] = []
-    
-    for var balloonCount = 0; balloonCount < numberOfBalloons; balloonCount++ {
+ 
+    for var balloonCount = 0; balloonCount < 100; balloonCount++ {
         
         let randomInteger = Int(arc4random_uniform(UInt32(4)))
-        
-        myBalloons.balloonNumber = myBalloons.balloonNumber + 1
-        
+      
+   
         var x = randomInteger
         switch x {
         case 0:
-            myBalloons.selectedImage = UIImage(named: "RedBalloon1.jpg")
+            myBalloons.append(Balloon(balloonNumber: balloonCount, selectedImage: "RedBalloon1.jpg"))
         case 1:
-            myBalloons.selectedImage = UIImage(named: "RedBalloon2.jpg")
+             myBalloons.append(Balloon(balloonNumber: balloonCount, selectedImage: "RedBalloon2.jpg"))
         case 2:
-            myBalloons.selectedImage = UIImage(named: "RedBalloon3.jpg")
+            myBalloons.append(Balloon(balloonNumber: balloonCount, selectedImage: "RedBalloon3.jpg"))
         default:
-            myBalloons.selectedImage = UIImage(named: "RedBalloon4.jpg")
-       
-       
-       balloonImageArray.append("\(myBalloons.selectedImage)")
-       balloonCountArray.append(balloonCount)
+            myBalloons.append(Balloon(balloonNumber: balloonCount, selectedImage: "RedBalloon4.jpg"))
+           
+          
             
-            
-}
+        }
 
-}
+    }
 
-    var thisBalloon:String = balloonImageArray[0]
-    println("\(thisBalloon)!")
     
 }
 
-/func createBalloons () {
+//func createBalloons () {
 //
 //    var myRandomBallons = [Balloon]()
 //    var ballonImage = ""

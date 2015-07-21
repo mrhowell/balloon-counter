@@ -28,7 +28,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="kkB-fH-ySH"/>
                                     <barButtonItem title="Next" id="RMa-88-ixj">
                                         <connections>
-                                            <action selector="barNextButtonPressed:" destination="BYZ-38-t0r" id="Zce-Pr-IuR"/>
+                                            <action selector="nextBalloonButtonPressed:" destination="BYZ-38-t0r" id="Sqo-ze-05s"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -69,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="304.5" y="429"/>
+            <point key="canvasLocation" x="354" y="434"/>
         </scene>
     </scenes>
 </document>

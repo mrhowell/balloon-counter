@@ -13,78 +13,97 @@ class ViewController: UIViewController {
     @IBOutlet weak var balloonImage: UIImageView!
     @IBOutlet weak var balloonCount: UILabel!
     
+    // Initialize Balloon struct in array
+    
     var myBalloons:[Balloon] = []
+    var currentIndex = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        var zeroBalloons = Balloon()
-        zeroBalloons.balloonNumber = 0
-        zeroBalloons.selectedImage = UIImage(named: "BerlinTVTower.jpg")
+    
+ // Function to create 99 balloons with number and assigned random image and add to array
         
-        
-        balloonCount.text = "\(zeroBalloons.balloonNumber) Balloons"
-        balloonImage.image = zeroBalloons.selectedImage
-        
-        
-        for x in 0...99 {
+        func createBalloons (numberOfBalloons: Int) {
             
-//            for var balloonCount = 0; balloonCount < numberOfBalloons; balloonCount++ {
+            self.myBalloons.append(Balloon(balloonNumber: 0, selectedImage: "BerlinTVTower.jpg"))
             
+            for var balloonCount = 1; balloonCount < numberOfBalloons; balloonCount++ {
+                
                 let randomInteger = Int(arc4random_uniform(UInt32(4)))
                 
-//                myBalloons.balloonNumber = myBalloons.balloonNumber + 1
-            
                 var x = randomInteger
-            
                 switch x {
                 case 0:
-                    myBalloons.selectedImage = UIImage(named: "RedBalloon1.jpg")
+                    self.myBalloons.append(Balloon(balloonNumber: balloonCount, selectedImage: "RedBalloon1.jpg"))
                 case 1:
-                    myBalloons.selectedImage = UIImage(named: "RedBalloon2.jpg")
+                    self.myBalloons.append(Balloon(balloonNumber: balloonCount, selectedImage: "RedBalloon2.jpg"))
                 case 2:
-                    myBalloons.selectedImage = UIImage(named: "RedBalloon3.jpg")
+                    self.myBalloons.append(Balloon(balloonNumber: balloonCount, selectedImage: "RedBalloon3.jpg"))
                 default:
-                    myBalloons.selectedImage = UIImage(named: "RedBalloon4.jpg")
-                    
-                    
-                    balloonImageArray.append("\(myBalloons.selectedImage)")
-                    balloonCountArray.append(balloonCount)
+                    self.myBalloons.append(Balloon(balloonNumber: balloonCount, selectedImage: "RedBalloon4.jpg"))
+                }
+                
             }
+            
             
         }
         
+        // Call createBalloons function to create 100 Ballons in Array on view load
+        
+        createBalloons(100)
+        
+        //Display O index of myBalloon
+        balloonCount.text = "\(myBalloons[0].balloonNumber) balloons"
+        balloonImage.image = UIImage(named: "\(myBalloons[0].selectedImage)")
 
         
-        
-        
-    
-        
-        
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+
     }
 
-    @IBAction func barNextButtonPressed(sender: UIBarButtonItem) {
-//        println(myBalloons)
-        
-        UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+    @IBAction func nextBalloonButtonPressed(sender: UIBarButtonItem) {
+    
+     
+        if currentIndex < myBalloons.count {
+    
+           let currentBalloon = self.myBalloons[currentIndex]
             
-            self.balloonImage.image = balloon.selectedImage
-            self.balloonCount.text = ("\(balloon.balloonNumber)")
-            
-            
+            UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+    
+                self.balloonCount.text = "\(currentBalloon.balloonNumber) balloons"
+                self.balloonImage.image = UIImage(named: "\(currentBalloon.selectedImage)")
+                self.currentIndex = self.currentIndex + 1
+  
+                
+//                self.balloonCount.text = "\(self.myBalloons[self.currentIndex].balloonNumber) balloons"
+//                self.balloonImage.image = UIImage(named: "\(self.myBalloons[self.currentIndex].selectedImage)!")
+//                self.currentIndex = self.currentIndex + 1
+    
             }, completion: {
                 (finished: Bool) -> () in
         })
-    
     }
     
+    else {
+    self.balloonCount.text = "No more balloons"
+            self.balloonImage.image = UIImage(named: "Oops.jpg")
+            
+    
+    }
+
 }
+
+}
+
+
+
 
 
